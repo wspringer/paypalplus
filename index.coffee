@@ -1,5 +1,6 @@
 metalsmith = require 'metalsmith'
 coffee = require 'metalsmith-coffee'
+assets = require 'metalsmith-static'
 lib = require('bower-files')()
 _ = require 'lodash'
 { readFileSync } = require 'fs'
@@ -25,12 +26,16 @@ bower = (files, metalsmith, done) ->
 createManifest = (files, metalsmith, done) ->
   manifest = 
     manifest_version: 2
-    name: 'Fix Paypal'
+    name: 'PayPal Plus'
     version: require('./package.json').version
+    icons:
+      '16': 'img/pluspal-16.png'
+      '48': 'img/pluspal-48.png'
+      '128': 'img/pluspal-128.png'
     content_scripts: [
       {
         matches: [
-          '<all_urls>'
+          'https://www.paypal.com/myaccount/activity'
         ]
         js: 
           _.chain(files)
@@ -50,9 +55,13 @@ createManifest = (files, metalsmith, done) ->
 
 metalsmith(__dirname)
 .use bower
+.use assets(
+  src: 'static'
+  dest: '.'
+)
 .use coffee()
 .use createManifest
 .destination 'build'
 .build (err, files) ->
-  if err 
-    console.error err
+  if err? 
+    console.error 'Got an error', err.stack
