@@ -1,0 +1,16 @@
+{
+  "name": "fixpaypal",
+  "version": "0.1.0",
+  "description": "Chrome extension to pull down the information I need",
+  "scripts": {
+    "build": "coffee ./index.coffee"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "metalsmith": "^2.1.0",
+    "metalsmith-coffee": "0.0.2",
+    "metalsmith-copy": "^0.2.1"
+  }
+}
