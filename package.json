@@ -5,8 +5,8 @@
   "scripts": {
     "build": "coffee ./index.coffee"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Wilfred Springer",
+  "license": "GPLv3",
   "dependencies": {
     "bower-files": "^3.11.3",
     "coffee-script": "^1.10.0",
