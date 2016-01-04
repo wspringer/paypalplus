@@ -39,7 +39,7 @@ $(downloadAllBtn)
       ]
     encoded = new CSV(all, header: [ "Date", "Amount", "Payee", "Description", "Reference", "Account" ]).encode()
     blob = new Blob([encoded], type: "text/plain;charset=utf-8")
-    saveAs(blob, 'transactions.csv')
+    saveAs(blob, 'transactions.csv', true)
 
 
 $('input[name=filterSubmit]')
