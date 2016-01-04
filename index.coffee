@@ -1,10 +1,10 @@
-metalsmith = require 'metalsmith'
-coffee = require 'metalsmith-coffee'
-assets = require 'metalsmith-static'
-lib = require('bower-files')()
-_ = require 'lodash'
+metalsmith       = require 'metalsmith'
+coffee           = require 'metalsmith-coffee'
+assets           = require 'metalsmith-static'
+lib              = require('bower-files')()
+_                = require 'lodash'
 { readFileSync } = require 'fs'
-{ basename } = require 'path'
+{ basename }     = require 'path'
 
 
 
