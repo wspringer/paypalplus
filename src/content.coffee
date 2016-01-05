@@ -31,7 +31,9 @@ $(downloadAllBtn)
     all = _.map transactions, (transaction) ->
       [
         fixDate(_.get transaction, 'data.details.date')
-        fixAmount(_.get transaction, 'data.details.fundingSource.fundingSourceList[0].amount')
+        _.thru fixAmount(_.get(transaction, 'data.details.fundingSource.fundingSourceList[0].amount')), (amount) ->
+          if _.get transaction, 'data.details.isCredit' then amount
+          else '-' + amount
         _.get transaction, 'data.details.counterparty.name'
         _.pluck(_.get(transaction, 'data.details.itemDetails.itemList'), 'name').join(', ')
         _.get transaction, 'data.details.transactionId'
