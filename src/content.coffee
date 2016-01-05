@@ -20,6 +20,8 @@ fixAmount = (amount) ->
   fixed = amount.replace(',', '.')
   fixed.substr(0, fixed.length - 4)
 
+fixDate = (date) -> moment(date, 'D MMMM YYYY').format('DD/MM/YYYY')
+
 $(downloadAllBtn)
 .click (evt) ->
   evt.preventDefault()
@@ -28,7 +30,7 @@ $(downloadAllBtn)
     console.info 'Transactions', transactions
     all = _.map transactions, (transaction) ->
       [
-        _.get transaction, 'data.details.date'
+        fixDate(_.get transaction, 'data.details.date')
         fixAmount(_.get transaction, 'data.details.fundingSource.fundingSourceList[0].amount')
         _.get transaction, 'data.details.counterparty.name'
         _.pluck(_.get(transaction, 'data.details.itemDetails.itemList'), 'name').join(', ')

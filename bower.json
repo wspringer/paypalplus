@@ -17,6 +17,7 @@
     "comma-separated-values": "~3.6.4",
     "FileSaver.js": "filesaver.js#~0.0.2",
     "jquery": "~2.1.4",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "moment": "momentjs#~2.11.0"
   }
 }
