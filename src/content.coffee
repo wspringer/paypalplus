@@ -20,7 +20,7 @@ fixAmount = (amount) ->
   fixed = amount.replace(',', '.')
   fixed.substr(0, fixed.length - 4)
 
-fixDate = (date) -> moment(date, 'D MMMM YYYY').format('DD/MM/YYYY')
+fixDate = (date) -> moment(date, 'D MMMM YYYY').format('DD/MM/YY')
 
 $(downloadAllBtn)
 .click (evt) ->
