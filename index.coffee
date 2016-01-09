@@ -76,6 +76,8 @@ zip = (target) ->
  * Putting everything together.
 ###
 
+name = 'paypalplus-' + (require('./package.json')).version + '.zip'
+
 metalsmith(__dirname)
 .use bower
 .use assets(
@@ -85,7 +87,7 @@ metalsmith(__dirname)
 .use coffee()
 .use uglify()
 .use createManifest
-.use zip('./paypalplus.zip')
+.use zip(name)
 .destination 'build'
 .build (err, files) ->
   if err? 
