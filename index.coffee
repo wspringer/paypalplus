@@ -3,8 +3,12 @@ coffee           = require 'metalsmith-coffee'
 assets           = require 'metalsmith-static'
 lib              = require('bower-files')()
 _                = require 'lodash'
+yazl             = require 'yazl'
 { readFileSync } = require 'fs'
 { basename }     = require 'path'
+assert           = require 'assert'
+fs               = require 'fs'
+uglify           = require 'metalsmith-uglify'
 
 
 
@@ -23,6 +27,7 @@ bower = (files, metalsmith, done) ->
   include('fonts', lib.self().ext(['eot','otf','ttf','woff']).files)
   done()
 
+
 createManifest = (files, metalsmith, done) ->
   manifest = 
     manifest_version: 2
@@ -40,13 +45,31 @@ createManifest = (files, metalsmith, done) ->
         js: 
           _.chain(files)
           .map (obj, name) -> name
-          .filter (name) -> name.endsWith '.js'
+          .filter (name) -> name.endsWith 'min.js'
           .value()
       }
     ]  
   files['manifest.json'] = 
     contents: JSON.stringify manifest, null, 2  
   done()
+
+
+zip = (target) ->
+  try
+    assert not _.isUndefined(target), 'Expecting target to be set'
+    (files, metalsmith, done) ->
+      zip = new yazl.ZipFile()
+      zip.outputStream.pipe(fs.createWriteStream(target)).on 'close', -> console.info 'Done'
+      _.each files, (file, name) ->
+        if not name.startsWith '.'
+          if name.endsWith '.js'
+            if name.endsWith 'min.js'
+              zip.addBuffer file.contents, name
+          else zip.addBuffer file.contents, name
+      zip.end()
+      done()
+  catch err
+    done(err)
 
 
 ###*
@@ -60,7 +83,9 @@ metalsmith(__dirname)
   dest: '.'
 )
 .use coffee()
+.use uglify()
 .use createManifest
+.use zip('./paypalplus.zip')
 .destination 'build'
 .build (err, files) ->
   if err? 

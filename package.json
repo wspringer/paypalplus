@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Chrome extension to pull down the information I need",
   "scripts": {
-    "build": "coffee ./index.coffee"
+    "install": "coffee ./index.coffee"
   },
   "author": "Wilfred Springer",
   "license": "GPLv3",
@@ -14,6 +14,8 @@
     "metalsmith": "^2.1.0",
     "metalsmith-coffee": "0.0.2",
     "metalsmith-copy": "^0.2.1",
-    "metalsmith-static": "0.0.5"
+    "metalsmith-static": "0.0.5",
+    "metalsmith-uglify": "^1.2.1",
+    "yazl": "^2.3.0"
   }
 }
