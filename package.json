@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "description": "Chrome extension to pull down the information I need",
   "scripts": {
-    "install": "coffee ./index.coffee"
+    "build": "coffee ./index.coffee",
+    "install": "npm run build"
   },
   "author": "Wilfred Springer",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "dependencies": {
     "bower-files": "^3.11.3",
     "coffee-script": "^1.10.0",
@@ -17,5 +18,9 @@
     "metalsmith-static": "0.0.5",
     "metalsmith-uglify": "^1.2.1",
     "yazl": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wspringer/paypalplus.git"
   }
 }

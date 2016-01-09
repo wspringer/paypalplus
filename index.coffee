@@ -59,7 +59,7 @@ zip = (target) ->
     assert not _.isUndefined(target), 'Expecting target to be set'
     (files, metalsmith, done) ->
       zip = new yazl.ZipFile()
-      zip.outputStream.pipe(fs.createWriteStream(target)).on 'close', -> console.info 'Done'
+      zip.outputStream.pipe(fs.createWriteStream(target))
       _.each files, (file, name) ->
         if not name.startsWith '.'
           if name.endsWith '.js'
