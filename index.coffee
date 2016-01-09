@@ -37,6 +37,7 @@ createManifest = (files, metalsmith, done) ->
       '16': 'img/pluspal-16.png'
       '48': 'img/pluspal-48.png'
       '128': 'img/pluspal-128.png'
+    author: 'Wilfred Springer'
     content_scripts: [
       {
         matches: [
